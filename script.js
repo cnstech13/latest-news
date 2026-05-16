@@ -1,4 +1,4 @@
-const apiKey = "a3EdzVkMKtxX4j2xLGzN6O9Jqg0dU5D1loAqeumz";
+const apiKey = "7278bdefd5584696960c15fccd92eb1c";
 
 const newsContainer = document.getElementById("newsContainer");
 const loader = document.getElementById("loader");
@@ -18,9 +18,9 @@ async function fetchNews(category = "general", query = "") {
         let url = "";
 
         if(query){
-            url = `https://api.thenewsapi.com/v1/news/headlines?locale=us&language=en&api_token=a3EdzVkMKtxX4j2xLGzN6O9Jqg0dU5D1loAqeumz`;
+            url = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=7278bdefd5584696960c15fccd92eb1c`;
         }else{
-            url = `https:https://api.thenewsapi.com/v1/news/headlines?locale=us&language=en&api_token=a3EdzVkMKtxX4j2xLGzN6O9Jqg0dU5D1loAqeumz`;
+            url = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=7278bdefd5584696960c15fccd92eb1c`;
         }
 
         const response = await fetch(url);
