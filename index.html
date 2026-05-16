@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Global News</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">GlobalNews</div>
+
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Politics</a>
+            <a href="#">Sports</a>
+            <a href="#">Technology</a>
+            <a href="#">Entertainment</a>
+        </nav>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search news...">
+            <button id="searchBtn">Search</button>
+        </div>
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Latest Breaking News</h1>
+            <p>Stay updated with world news, politics, technology, sports and entertainment.</p>
+        </div>
+    </section>
+
+
+    <!-- CATEGORY FILTER -->
+    <section class="filters">
+        <button class="category-btn active" data-category="general">General</button>
+        <button class="category-btn" data-category="business">Business</button>
+        <button class="category-btn" data-category="technology">Technology</button>
+        <button class="category-btn" data-category="sports">Sports</button>
+        <button class="category-btn" data-category="health">Health</button>
+        <button class="category-btn" data-category="science">Science</button>
+        <button class="category-btn" data-category="entertainment">Entertainment</button>
+    </section>
+
+
+    <!-- LOADER -->
+    <div class="loader" id="loader">
+        <div class="spinner"></div>
+    </div>
+
+
+    <!-- NEWS CONTAINER -->
+    <main id="newsContainer" class="news-container">
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2026 GlobalNews. All Rights Reserved.</p>
+    </footer>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
