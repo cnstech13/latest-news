@@ -18,9 +18,9 @@ async function fetchNews(category = "general", query = "") {
         let url = "";
 
         if(query){
-            url = `https://newsapi.org/v2/everything?q=${query}&language=en&apiKey=${apiKey}`;
+            url = `https://api.thenewsapi.com/v1/news/headlines?locale=us&language=en&api_token=a3EdzVkMKtxX4j2xLGzN6O9Jqg0dU5D1loAqeumz`;
         }else{
-            url = `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${apiKey}`;
+            url = `https:https://api.thenewsapi.com/v1/news/headlines?locale=us&language=en&api_token=a3EdzVkMKtxX4j2xLGzN6O9Jqg0dU5D1loAqeumz`;
         }
 
         const response = await fetch(url);
