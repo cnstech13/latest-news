@@ -2,102 +2,69 @@ const apiKey = "7278bdefd5584696960c15fccd92eb1c";
 
 const newsContainer = document.getElementById("newsContainer");
 const loader = document.getElementById("loader");
-const categoryButtons = document.querySelectorAll(".category-btn");
-const searchBtn = document.getElementById("searchBtn");
-const searchInput = document.getElementById("searchInput");
 
+async function getNews() {
 
-// FETCH NEWS
-async function fetchNews(category = "general", query = "") {
-
-    loader.style.display = "flex";
+    loader.style.display = "block";
     newsContainer.innerHTML = "";
 
     try {
 
-        let url = "";
+        const category =
+        document.getElementById("category").value;
 
-        if(query){
-            url = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=7278bdefd5584696960c15fccd92eb1c`;
-        }else{
-            url = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=7278bdefd5584696960c15fccd92eb1c`;
-        }
+        const country =
+        document.getElementById("country").value;
+
+        const url =
+        `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}`;
 
         const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch news");
+        }
+
         const data = await response.json();
 
         loader.style.display = "none";
 
-        if(data.articles.length === 0){
-            newsContainer.innerHTML = `
-                <h2>No news found.</h2>
-            `;
+        if (data.articles.length === 0) {
+            newsContainer.innerHTML =
+            "<p>No news found</p>";
             return;
         }
 
         data.articles.forEach(article => {
 
-            const card = document.createElement("div");
-            card.classList.add("news-card");
+            const newsCard = document.createElement("div");
 
-            card.innerHTML = `
-                <img src="${article.urlToImage || 'https://via.placeholder.com/400x250'}" class="news-image">
+            newsCard.classList.add("news-card");
 
-                <div class="news-content">
-                    <h2>${article.title}</h2>
-
-                    <p>
-                        ${article.description || 'No description available'}
-                    </p>
-
-                    <a href="${article.url}" target="_blank">
-                        Read More
-                    </a>
-                </div>
+            newsCard.innerHTML = `
+                <img src="${article.urlToImage || 'https://via.placeholder.com/300'}">
+                
+                <h2>${article.title}</h2>
+                
+                <p>${article.description || "No description available"}</p>
+                
+                <a href="${article.url}" target="_blank">
+                    Read More
+                </a>
             `;
 
-            newsContainer.appendChild(card);
+            newsContainer.appendChild(newsCard);
         });
 
-    } catch(error){
+    } catch (error) {
+
         loader.style.display = "none";
 
-        newsContainer.innerHTML = `
-            <h2>Error loading news.</h2>
-        `;
+        newsContainer.innerHTML =
+        `<p>Error loading news</p>`;
 
-        console.log(error);
+        console.error(error);
     }
 }
 
-
-// CATEGORY BUTTONS
-categoryButtons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-        document.querySelector(".category-btn.active")
-        .classList.remove("active");
-
-        button.classList.add("active");
-
-        const category = button.dataset.category;
-
-        fetchNews(category);
-    });
-});
-
-
-// SEARCH NEWS
-searchBtn.addEventListener("click", () => {
-
-    const query = searchInput.value.trim();
-
-    if(query !== ""){
-        fetchNews("general", query);
-    }
-});
-
-
-// LOAD DEFAULT NEWS
-fetchNews();
+getNews();
