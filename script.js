@@ -1,4 +1,4 @@
-const apiKey = "YOUR_NEWS_API_KEY";
+const apiKey = "a3EdzVkMKtxX4j2xLGzN6O9Jqg0dU5D1loAqeumz";
 
 const newsContainer = document.getElementById("newsContainer");
 const loader = document.getElementById("loader");
